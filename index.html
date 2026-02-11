@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>TWINK IA | Status</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background: #050505;
+            color: #f0f0f0;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            height: 100dvh;
+            display: flex;
+            align-items: center; /* Centraliza verticalmente */
+            justify-content: center; /* Centraliza horizontalmente */
+            margin: 0;
+            overflow: hidden;
+        }
+
+        /* Fundo RGB animado */
+        .bg-glow {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 60%;
+            height: 60%;
+            background: radial-gradient(circle, rgba(66, 133, 244, 0.15) 0%, transparent 70%);
+            z-index: -1;
+            filter: blur(80px);
+            transform: translate(-50%, -50%);
+            animation: pulseGlow 8s infinite alternate;
+        }
+
+        @keyframes pulseGlow {
+            from { opacity: 0.5; transform: translate(-50%, -50%) scale(1); }
+            to { opacity: 1; transform: translate(-50%, -50%) scale(1.2); }
+        }
+
+        .rgb-text {
+            background: linear-gradient(135deg, #4285f4 0%, #9b72cb 50%, #d96570 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-size: 200% auto;
+            animation: shine 3s linear infinite;
+        }
+
+        @keyframes shine {
+            to { background-position: 200% center; }
+        }
+
+        /* Card Central */
+        .status-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(20px);
+            border-radius: 40px;
+            padding: 40px;
+            text-align: center;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            animation: popIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            width: 90%;
+            max-width: 400px;
+        }
+
+        @keyframes popIn {
+            from { opacity: 0; transform: scale(0.8); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        /* Sistema de Dot */
+        .status-indicator {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 20px;
+            border-radius: 100px;
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            margin-top: 20px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .status-indicator:active { transform: scale(0.95); }
+
+        .dot {
+            width: 10px;
+            height: 10px;
+            background: #10b981;
+            border-radius: 50%;
+            box-shadow: 0 0 15px #10b981;
+            animation: blink 2s infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="bg-glow"></div>
+
+    <div class="status-card">
+        <h1 class="text-xs font-bold tracking-[0.3em] text-gray-500 mb-2 uppercase">Core System</h1>
+        <h2 class="text-5xl font-bold mb-6 tracking-tighter text-white">TWINK <span class="rgb-text">IA</span></h2>
+        
+        <div class="space-y-4">
+            <div onclick="playSound()" class="status-indicator">
+                <div class="dot"></div>
+                <span class="text-green-500 font-bold text-sm uppercase tracking-widest">Online</span>
+            </div>
+            
+            <div class="pt-6 border-t border-white/5">
+                <p class="text-gray-500 text-xs font-medium">STATUS ATUAL</p>
+                <p class="text-gray-300 text-sm mt-1">Nenhuma atualização pendente.</p>
+            </div>
+        </div>
+    </div>
+
+    <audio id="clickSound" src="https://assets.mixkit.co/active_storage/sfx/2568/2568-preview.mp3"></audio>
+
+    <script>
+        function playSound() {
+            const sound = document.getElementById('clickSound');
+            sound.volume = 0.3;
+            sound.currentTime = 0;
+            sound.play();
+        }
+    </script>
+</body>
+</html>
